@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import CountryList from './components/CountryList'
 
 class App extends React.Component {
@@ -13,22 +14,42 @@ class App extends React.Component {
           alpha2Code: 'AF',
           name: 'Afghanistan',
           capital: 'Kabul',
-          region: 'Asia'
+          region: 'Asia',
+          flag: ''
         },
         {
           alpha2Code: 'HK',
           name: 'Hong Kong',
           capital: 'City of Victoria',
-          region: 'Asia'
+          region: 'Asia',
+          flag: ''
         },
         {
           alpha2Code: 'ID',
           name: 'Indonesia',
           capital: 'Jakarta',
-          region: 'Asia'
+          region: 'Asia',
+          flag: ''
         }
       ]
     }
+  }
+
+  getCountries = () => {
+    fetch('https://restcountries.eu/rest/v2/all')
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      this.setState({
+        ...this.state,
+        countries: res
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.getCountries()
   }
 
   render () {
@@ -36,26 +57,18 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>Hello World</h1>
-        <h2>{title}</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Code</th>
-              <th>Name</th>
-              <th>Capital</th>
-              <th>Region</th>
-            </tr>
-          </thead>
-          <tbody id="list">
+        <h1 className="text-center">{title}</h1>
+        <section className="product">
+          <div className="container">
+            <div className="row">
               {
                 countries.map((country, id) => {
                   return <CountryList country={country} id={id} key={country.alpha2Code}></CountryList>
                 })
               }
-          </tbody>
-        </table>
+            </div>
+          </div>
+        </section>
       </div>
     )
   }
