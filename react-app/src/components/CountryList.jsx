@@ -21,7 +21,8 @@ import React from 'react'
 //   }
 // }
 
-function CountryList(country) {
+function CountryList(props) {
+  const country = props.country
   return (
     <>
     <div className="col-3 mt-5">

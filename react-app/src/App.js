@@ -80,8 +80,8 @@ function App() {
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')
     .then(res => res.json())
-    .then(res => {
-      setCountries(res)
+    .then(countries => {
+      setCountries(countries)
     })
     .catch(err => console.log(err))
   }, [])
@@ -93,8 +93,8 @@ function App() {
         <div className="container">
           <div className="row">
             {
-              countries.map((country, id) => {
-                return <CountryList country={country} id={id} key={country.alpha2Code}></CountryList>
+              countries.map(country => {
+                return <CountryList country={country} key={country.alpha2Code}></CountryList>
               })
             }
           </div>
