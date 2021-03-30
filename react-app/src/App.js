@@ -3,35 +3,23 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Country from './components/Country'
 import useFetch from './helpers/hooks/useFetch'
+import { Button } from 'react-bootstrap'
 
 function App() {
 
+  const { data, loading, error, setNewUrl } = useFetch()
+
+  let url;
   let baseUrl = 'https://restcountries.eu/rest/v2'
-  let url = baseUrl+'/all'
-  const all = baseUrl+'/all'
-  const africa = baseUrl+'/region/africa'
-  const americas = baseUrl+'/region/americas'
-  const asia = baseUrl+'/region/asia'
-  const europe = baseUrl+'/region/europe'
-  const oceania = baseUrl+'/region/oceania'
 
   function changeUrl(newUrl) {
     if (newUrl === 'all') {
-      url = all
-    } else if (newUrl === 'africa') {
-      url = africa
-    } else if (newUrl === 'americas') {
-      url = americas
-    } else if (newUrl === 'asia') {
-      url = asia
-    } else if (newUrl === 'europe') {
-      url = europe
-    } else if (newUrl === 'oceania') {
-      url = oceania
-    }
+      url = `${baseUrl}/${newUrl}`
+    } else {
+      url = `${baseUrl}/region/${newUrl}`
+    } 
+    setNewUrl(url)
   }
-
-  const { data, loading, error } = useFetch(url)
 
   if (loading) {
     return (
@@ -51,14 +39,14 @@ function App() {
 
   return (
     <div>
-      <h1 className="text-center">Nations Of The World</h1>
-      <div className="text-center">
-        <button onClick={() => changeUrl('all')}>All Countries</button>
-        <button onClick={() => changeUrl('africa')}>Africa</button>
-        <button onClick={() => changeUrl('americas')}>Americas</button>
-        <button onClick={() => changeUrl('asia')}>Asia</button>
-        <button onClick={() => changeUrl('europe')}>Europe</button>
-        <button onClick={() => changeUrl('oceania')}>Oceania</button>
+      <div className="text-center mt-5">
+      <h1>Countries Of The World</h1><br></br>
+        <Button variant="outline-info" onClick={() => changeUrl('all')}>All Countries</Button>{' '}
+        <Button variant="outline-info" onClick={() => changeUrl('africa')}>Africa</Button>{' '}
+        <Button variant="outline-info" onClick={() => changeUrl('americas')}>Americas</Button>{' '}
+        <Button variant="outline-info" onClick={() => changeUrl('asia')}>Asia</Button>{' '}
+        <Button variant="outline-info" onClick={() => changeUrl('europe')}>Europe</Button>{' '}
+        <Button variant="outline-info" onClick={() => changeUrl('oceania')}>Oceania</Button>
       </div>
       
       <section className="product">

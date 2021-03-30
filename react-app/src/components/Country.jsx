@@ -7,7 +7,7 @@ function Country(props) {
     <>
     <div className="col-3 mt-5">
       <Card className="bg-light mb-3 text-center" style={{ height: '20rem' }}>
-      <Card.Img className="div-img border mt-4" src={country.flag} alt="flag" style={{ position: 'relative', width: '13rem', height: '8rem' }}></Card.Img>
+      <Card.Img className="div-img border mt-4 img-fluid" src={country.flag} alt="flag" style={{ position: 'relative', width: '16rem', height: '10rem' }}></Card.Img>
         <Card.Body>
           <Card.Title>{country.alpha2Code}</Card.Title>
           <Card.Text><b>{country.name}</b></Card.Text>
