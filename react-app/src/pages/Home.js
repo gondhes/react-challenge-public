@@ -7,10 +7,10 @@ import { Button } from 'react-bootstrap'
 
 function Home() {
 
-  const { data, loading, error, setNewUrl } = useFetch()
-
-  let url;
+  let url = 'https://restcountries.eu/rest/v2/all'
   let baseUrl = 'https://restcountries.eu/rest/v2'
+
+  const { data, loading, error, setNewUrl } = useFetch(url)
 
   function changeUrl(newUrl) {
     if (newUrl === 'all') {
@@ -49,7 +49,7 @@ function Home() {
         <Button variant="outline-info" onClick={() => changeUrl('oceania')}>Oceania</Button>
       </div>
       
-      <section className="product">
+      <section>
         <div className="container">
           <div className="row">
             {

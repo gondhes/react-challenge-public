@@ -23,7 +23,7 @@ function App() {
         </nav>
 
         <Switch>
-          <Route path="/country/:id">
+          <Route path="/country/:code">
             <Detail />
           </Route>
           <Route path="/">
