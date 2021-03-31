@@ -5,37 +5,51 @@ import Country from '../components/Country'
 import useFetch from '../helpers/hooks/useFetch'
 import { Button } from 'react-bootstrap'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { setUrl } from '../store/actions'
+
 function Home() {
 
-  let url = 'https://restcountries.eu/rest/v2/all'
+  // let url = 'https://restcountries.eu/rest/v2/all'
   let baseUrl = 'https://restcountries.eu/rest/v2'
 
-  const { data, loading, error, setNewUrl } = useFetch(url)
+  // const { data, loading, error, setNewUrl } = useFetch(url)
+  let updatedUrl;
+  const url = useSelector(state => state.url)
+  const countries = useSelector(state => state.countries)
+  const dispatch = useDispatch()
+
+  // dispatch(setUrl(url))
+  useFetch()
 
   function changeUrl(newUrl) {
     if (newUrl === 'all') {
-      url = `${baseUrl}/${newUrl}`
+      updatedUrl = `${baseUrl}/${newUrl}`
+      dispatch(setUrl(updatedUrl))
     } else {
-      url = `${baseUrl}/region/${newUrl}`
+      updatedUrl = `${baseUrl}/region/${newUrl}`
+      dispatch(setUrl(updatedUrl))
+      console.log(url, "<<<<<<")
     } 
-    setNewUrl(url)
+    // dispatch(setUrl(url))
+    // console.log(url, "<<<<<<")
   }
 
-  if (loading) {
-    return (
-      <div className="text-center">
-        <img src='../public/ripple.svg' alt='loading..'></img>
-      </div>
-    )
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="text-center">
+  //       <img src='../public/ripple.svg' alt='loading..'></img>
+  //     </div>
+  //   )
+  // }
 
-  if (error) {
-    return (
-      <div className="text-center">
-        <h2>Error: {error.message}</h2>
-      </div>
-    )
-  }
+  // if (error) {
+  //   return (
+  //     <div className="text-center">
+  //       <h2>Error: {error.message}</h2>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div>
@@ -53,7 +67,7 @@ function Home() {
         <div className="container">
           <div className="row">
             {
-              data.map(country => {
+              countries.map(country => {
                 return <Country country={country} key={country.alpha2Code}></Country>
               })
             }
