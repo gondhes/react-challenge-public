@@ -19,7 +19,6 @@ function App() {
       <div>
         <nav className="text-center mt-5">
           <Link to="/">Home |</Link>
-          {/* <Link to="/country/af"> Country |</Link> */}
           <Link to="/fav"> Favorite</Link>
         </nav>
 

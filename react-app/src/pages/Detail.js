@@ -8,7 +8,7 @@ function Detail() {
   let { code } = useParams()
   let url = `https://restcountries.eu/rest/v2/alpha/${code}`
 
-  const { data, loading, error, setNewUrl } = useFetch(url)
+  const { data, loading, error } = useFetch(url)
   const country = data
 
   if (loading) {
@@ -32,7 +32,7 @@ function Detail() {
     <div className="text-center mt-5">
       <h1>Country Information</h1>
       <div className="mt-5">
-      <img src={country.flag} alt="flag" style={{ position: 'relative', width: '16rem', height: '10rem' }}></img>
+      <img className="border img-fluid" src={country.flag} alt="flag" style={{ position: 'relative', width: '16rem', height: '10rem' }}></img>
         <div className="mt-5">
           <h3>{country.alpha2Code}</h3>
           <h2><b>{country.name}</b></h2>

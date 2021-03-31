@@ -40,13 +40,13 @@ function Home() {
   return (
     <div>
       <div className="text-center mt-5">
-      <h1>Countries Of The World</h1><br></br>
-        <Button variant="outline-info" onClick={() => changeUrl('all')}>All Countries</Button>{' '}
-        <Button variant="outline-info" onClick={() => changeUrl('africa')}>Africa</Button>{' '}
-        <Button variant="outline-info" onClick={() => changeUrl('americas')}>Americas</Button>{' '}
-        <Button variant="outline-info" onClick={() => changeUrl('asia')}>Asia</Button>{' '}
-        <Button variant="outline-info" onClick={() => changeUrl('europe')}>Europe</Button>{' '}
-        <Button variant="outline-info" onClick={() => changeUrl('oceania')}>Oceania</Button>
+      <h1 className="mb-5">Countries Of The World</h1>
+        <Button className="mr-1 ml-1" variant="outline-info" onClick={() => changeUrl('all')}>All Countries</Button>
+        <Button className="mr-1 ml-1" variant="outline-info" onClick={() => changeUrl('africa')}>Africa</Button>
+        <Button className="mr-1 ml-1" variant="outline-info" onClick={() => changeUrl('americas')}>Americas</Button>
+        <Button className="mr-1 ml-1" variant="outline-info" onClick={() => changeUrl('asia')}>Asia</Button>
+        <Button className="mr-1 ml-1" variant="outline-info" onClick={() => changeUrl('europe')}>Europe</Button>
+        <Button className="mr-1 ml-1" variant="outline-info" onClick={() => changeUrl('oceania')}>Oceania</Button>
       </div>
       
       <section>

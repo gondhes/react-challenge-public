@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 function useFetch(url) {
 
+  // const url = 'https://restcountries.eu/rest/v2/all'
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
