@@ -4,27 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setCountries } from '../store/actions/countries'
-import { setUrl } from '../store/actions/url'
+import { setCountryAsync } from '../store/actions/country'
+// import { setUrl } from '../store/actions/url'
 
 function Detail() {
 
   let { code } = useParams()
-  let detailUrl = `https://restcountries.eu/rest/v2/alpha/${code}`
+  let url = `https://restcountries.eu/rest/v2/alpha/${code}`
 
-  const country = useSelector(state => state.countries.data)
-  const url = useSelector(state => state.url.data)
+  const country = useSelector(state => state.country.data)
+  // const url = useSelector(state => state.url.data)
   const dispatch = useDispatch()
 
-  dispatch(setUrl(detailUrl))
+  // dispatch(setUrl(detailUrl))
 
   useEffect(() => {
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      dispatch(setCountries(data))
-    })
-    .catch(err => console.log(err))
+    dispatch(setCountryAsync(url))
   }, [url, dispatch])
 
   return (

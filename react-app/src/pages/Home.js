@@ -6,7 +6,7 @@ import Country from '../components/Country'
 import { Button } from 'react-bootstrap'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setCountries } from '../store/actions/countries'
+import { setCountriesAsync } from '../store/actions/countries'
 import { setUrl } from '../store/actions/url'
 
 function Home() {
@@ -29,12 +29,7 @@ function Home() {
   }
 
   useEffect(() => {
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      dispatch(setCountries(data))
-    })
-    .catch(err => console.log(err))
+    dispatch(setCountriesAsync(url))
   }, [url, dispatch])
 
   return (

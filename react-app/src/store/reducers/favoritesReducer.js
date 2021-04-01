@@ -5,7 +5,9 @@ const initialState = {
 function favoritesReducer(state = initialState, action) {
   const { type, payload } = action
   if(type === 'favorites/setFavorites') {
-    return { ...state, data: payload }
+    let fav = state.data
+    fav.push(payload)
+    return { ...state, data: fav }
   }
   return state
 }
