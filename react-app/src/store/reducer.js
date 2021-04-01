@@ -1,6 +1,7 @@
 const initialState = {
     url: 'https://restcountries.eu/rest/v2/all',
-    countries: []
+    countries: [],
+    favorit: []
 }
 
 function reducer(state = initialState, action) {
@@ -9,6 +10,8 @@ function reducer(state = initialState, action) {
         return { ...state, countries: payload }
     } else if(type === 'url/setUrl') {
         return { ...state, url: payload }
+    } else if(type === 'favorit/setFavorit') {
+        return { ...state, favorit: payload }
     }
     return state
 }

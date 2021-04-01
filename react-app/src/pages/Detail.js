@@ -3,29 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import useFetch from '../helpers/hooks/useFetch'
 import { useParams } from 'react-router-dom'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { setUrl } from '../store/actions'
+
 function Detail() {
 
   let { code } = useParams()
-  let url = `https://restcountries.eu/rest/v2/alpha/${code}`
+  let detailUrl = `https://restcountries.eu/rest/v2/alpha/${code}`
 
-  const { data, loading, error } = useFetch(url)
-  const country = data
+  const country = useSelector(state => state.countries)
+  const dispatch = useDispatch()
 
-  if (loading) {
-    return (
-      <div className="text-center">
-        <img src='../public/ripple.svg' alt='loading..'></img>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="text-center">
-        <h2>Error: {error.message}</h2>
-      </div>
-    )
-  }
+  dispatch(setUrl(detailUrl))
+  useFetch()
 
   return (
     

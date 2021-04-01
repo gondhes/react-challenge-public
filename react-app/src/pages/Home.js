@@ -10,16 +10,12 @@ import { setUrl } from '../store/actions'
 
 function Home() {
 
-  // let url = 'https://restcountries.eu/rest/v2/all'
   let baseUrl = 'https://restcountries.eu/rest/v2'
 
-  // const { data, loading, error, setNewUrl } = useFetch(url)
   let updatedUrl;
-  const url = useSelector(state => state.url)
   const countries = useSelector(state => state.countries)
   const dispatch = useDispatch()
 
-  // dispatch(setUrl(url))
   useFetch()
 
   function changeUrl(newUrl) {
@@ -29,27 +25,8 @@ function Home() {
     } else {
       updatedUrl = `${baseUrl}/region/${newUrl}`
       dispatch(setUrl(updatedUrl))
-      console.log(url, "<<<<<<")
     } 
-    // dispatch(setUrl(url))
-    // console.log(url, "<<<<<<")
   }
-
-  // if (loading) {
-  //   return (
-  //     <div className="text-center">
-  //       <img src='../public/ripple.svg' alt='loading..'></img>
-  //     </div>
-  //   )
-  // }
-
-  // if (error) {
-  //   return (
-  //     <div className="text-center">
-  //       <h2>Error: {error.message}</h2>
-  //     </div>
-  //   )
-  // }
 
   return (
     <div>
