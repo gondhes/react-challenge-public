@@ -7,19 +7,19 @@ import { useSelector } from 'react-redux'
 
 function Favorite() {
 
-  const favorit = useSelector(state => state.favorit)
+  const favorites = useSelector(state => state.favorites.data)
 
   return (
     <div>
       <div className="text-center mt-5">
-      <h1 className="mb-5">Favorit Countries</h1>
+      <h1 className="mb-5">Favorite Countries</h1>
       </div>
       
       <section>
         <div className="container">
           <div className="row">
             {
-              favorit.map(country => {
+              favorites.map(country => {
                 return <FavCountry country={country} key={country.alpha2Code}></FavCountry>
               })
             }

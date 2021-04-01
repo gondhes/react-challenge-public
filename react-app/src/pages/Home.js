@@ -1,22 +1,22 @@
 import '../App.css';
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Country from '../components/Country'
-import useFetch from '../helpers/hooks/useFetch'
+// import useFetch from '../helpers/hooks/useFetch'
 import { Button } from 'react-bootstrap'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setUrl } from '../store/actions'
+import { setCountries } from '../store/actions/countries'
+import { setUrl } from '../store/actions/url'
 
 function Home() {
 
   let baseUrl = 'https://restcountries.eu/rest/v2'
-
   let updatedUrl;
-  const countries = useSelector(state => state.countries)
+  
+  const countries = useSelector(state => state.countries.data)
+  const url = useSelector(state => state.url.data)
   const dispatch = useDispatch()
-
-  useFetch()
 
   function changeUrl(newUrl) {
     if (newUrl === 'all') {
@@ -27,6 +27,15 @@ function Home() {
       dispatch(setUrl(updatedUrl))
     } 
   }
+
+  useEffect(() => {
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setCountries(data))
+    })
+    .catch(err => console.log(err))
+  }, [url, dispatch])
 
   return (
     <div>

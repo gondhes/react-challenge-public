@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import countries from './countries'
-import favorite from './favorite'
+import countries from './countriesReducer'
+import favorites from './favoritesReducer'
+import url from './urlReducer'
 
-export default combineReducers({
+const reducer = combineReducers({
   countries,
-  favorite
+  favorites,
+  url
 })
+
+export default reducer

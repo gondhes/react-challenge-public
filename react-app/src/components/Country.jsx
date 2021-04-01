@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
-import { setFavorit } from '../store/actions'
+import { setFavorites } from '../store/actions/favorites'
 
 function Country(props) {
   const { alpha2Code, flag, name, region } = props.country
@@ -15,7 +15,7 @@ function Country(props) {
   }
 
   const toFavorite = (country) => {
-    dispatch(setFavorit(country))
+    dispatch(setFavorites(country))
     history.push('/fav')
   }
 

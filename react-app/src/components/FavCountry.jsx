@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 
 function Country(props) {
+  console.log(props, "<<<<<<<<");
   const { alpha2Code, flag, name, region } = props.country
 
   return (
